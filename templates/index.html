@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Stock Tracker</title>
+</head>
+
+
+
+<body>
+    <h1>Stock Tracker</title>
+
+    <br>
+    <body>
+        <h2>Stock Name</h1>
+        <a href="http://3.86.46.82/new-stock">Create new Stock</a>
+        <form onsubmit="return lookupStock()">
+            <input id="stockInput">
+            <button type="submit">Enter</button>
+        </form>
+        
+    </body>
+
+
+
+    <script>
+        function lookupStock() {
+            const stockInput = document.getElementById("stockInput").value;
+            if (stockInput) {
+                 window.location.href = `http://3.86.46.82/stock/${encodeURIComponent(stockInput)}`;
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>New Stock</title>
+</head>
+<body>
+    <h1>Create a New Stock</h1>
+    <a href="http://3.86.46.82/">Home</a>
+    <form id="stockForm", method="post">
+        <input name="name">
+        <input name="price">
+        <button type="submit">Enter</button>
+    </form>
+
+    <p id="outputURL"></p>
+
+
+    <script>
+        document.getElementById("stockForm").addEventListener("submit", async function(e) {
+        e.preventDefault(); 
+
+        const formData = new FormData(this);
+
+        const res = await fetch("http://3.86.46.82/create", {
+            method: "POST",
+            body: formData
+        });
+        
+
+        document.getElementById("outputURL").textContent = `http://3.86.46.82/${formData.get("price")}`;
+        });
+</script>
+    
+</body>
+</html>
