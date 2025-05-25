@@ -8,21 +8,22 @@
 
 
 <body>
-    <h1>Stock Tracker</title>
+    <h1>Stock Tracker</h1>
 
-    <br>
-    <body>
-        <h2>Stock Name</h1>
+         
         <a href="http://3.86.46.82/new-stock">Create new Stock</a>
-        <form onsubmit="return lookupStock()">
-            <input id="stockInput">
-            <button type="submit">Enter</button>
+        
+<br>
+<br>
+
+<form onsubmit="return lookupStock()">
+            
+<label for="stockInput">Search</label>
+<input id="stockInput">            
+<button type="submit">Enter</button>
         </form>
         
-    </body>
-
-
-
+   
     <script>
         function lookupStock() {
             const stockInput = document.getElementById("stockInput").value;

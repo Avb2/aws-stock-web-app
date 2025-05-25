@@ -6,10 +6,12 @@
 </head>
 <body>
     <h1>Create a New Stock</h1>
-    <a href="http://3.86.46.82/">Home</a>
+    <a href="http://3.86.46.82/">Home</a><br><br>
     <form id="stockForm", method="post">
-        <input name="name">
-        <input name="price">
+<label for="name">Name</label>        
+<input name="name">
+<label for="price">Price</label>
+<input name="price">
         <button type="submit">Enter</button>
     </form>
 
@@ -28,7 +30,7 @@
         });
         
 
-        document.getElementById("outputURL").textContent = `http://3.86.46.82/${formData.get("price")}`;
+        document.getElementById("outputURL").textContent = `http://3.86.46.82/${formData.get("name")}`;
         });
 </script>
     

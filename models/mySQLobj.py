@@ -1,5 +1,6 @@
 import aiomysql
 
+
 class MySQLDB:
     def __init__(self, host: str, db: str, port: int, user: str, password: str):
         self.host = host
@@ -17,5 +18,7 @@ class MySQLDB:
             user=self.user,
             password=self.password,
             port=self.port,
-
+            cursorclass=aiomysql.DictCursor
         )
+
+        return self.conn

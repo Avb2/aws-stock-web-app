@@ -14,7 +14,23 @@ dotenv.load_dotenv()
 
 
 
+@app.get("/all")
+async def get_all():
+	db = MySQLDB(
+        	host="aws-stock.cluster-cyza8yaoc0cn.us-east-1.rds.amazonaws.com",
+        	db="stockInfo",
+        	port=3306,
+        	user=os.getenv("USERDB"),
+        	password=os.getenv("USERPWD")
+    	)
 
+	connection = await db.get_conn()
+
+
+	async with connection.cursor() as cursor:
+		await cursor.execute("SELECT * FROM info")
+		result = await cursor.fetchall()
+		return {"result": result}
 
 @app.get("/", response_class=HTMLResponse)
 def getIndex(request: Request):
@@ -65,6 +81,7 @@ def new_stock_page(request: Request):
 
 
 
+
 @app.post("/create")
 async def create_new_stock(name: str = Form(...), price: str = Form(...)):
     db = MySQLDB(
@@ -79,6 +96,8 @@ async def create_new_stock(name: str = Form(...), price: str = Form(...)):
 
 
     async with connection.cursor() as cursor:
-        insertStmt = "INSERT INTO info VALUES (%s, %d)"
-        await cursor.execute(insertStmt, (name, float(price)))
+        insertStmt = "INSERT INTO info VALUES (%s, %s)"
+        await cursor.execute(insertStmt, (name, round(float(price),2)))
+
+        await connection.commit()
 
